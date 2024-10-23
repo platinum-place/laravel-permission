@@ -7,15 +7,15 @@ use App\Models\shared\BaseAuthModel;
 use App\Observers\UserObserver;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
 #[ObservedBy([UserObserver::class])]
 class User extends BaseAuthModel
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable,HasRoles;
+    use HasApiTokens, HasFactory,HasRoles,Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -26,7 +26,7 @@ class User extends BaseAuthModel
         'name',
         'email',
         'password',
-        'username'
+        'username',
     ];
 
     /**
@@ -50,5 +50,31 @@ class User extends BaseAuthModel
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function syncPermissionTo(string $permission): void
+    {
+        if ($this->hasPermissionTo($permission)) {
+            $this->revokePermissionTo($permission);
+        } else {
+            $this->givePermissionTo($permission);
+        }
+    }
+
+    public function hasPermissionToAction(string $action, string $model): bool
+    {
+        return $this->hasPermissionTo("{$action}_{$model}");
+    }
+
+    public function syncPermissionToAction(string $action, string $model): void
+    {
+        $this->syncPermissionTo("{$action}_{$model}");
+    }
+
+    public function syncPermissionToActionMultiple(array $permissions): void
+    {
+        foreach ($permissions as $permission){
+            $this->syncPermissionTo($permission);
+        }
     }
 }

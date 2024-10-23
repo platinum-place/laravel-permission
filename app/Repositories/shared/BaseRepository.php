@@ -3,6 +3,7 @@
 namespace App\Repositories\shared;
 
 use App\Models\shared\BaseModel;
+use Illuminate\Support\Facades\Gate;
 
 abstract class BaseRepository
 {
@@ -15,6 +16,8 @@ abstract class BaseRepository
 
     public function all()
     {
+        Gate::authorize('viewAny', $this->model);
+
         return $this->model->paginate();
     }
 
@@ -27,6 +30,8 @@ abstract class BaseRepository
 
     public function getBy(string $field, mixed $value, ?array $with = [], ?array $appends = [])
     {
+        Gate::authorize('view', $this->model);
+
         return $this->newQuery($with)
             ->where($field, $value)
             ->firstOrFail()
@@ -35,6 +40,8 @@ abstract class BaseRepository
 
     public function save(array $data): BaseModel
     {
+        Gate::authorize('create', $this->model);
+
         $this->model->fill($data);
         $this->model->save();
 
@@ -43,6 +50,8 @@ abstract class BaseRepository
 
     public function update(int|string $id, array $data)
     {
+        Gate::authorize('update', $this->model);
+
         $this->model = $this->getBy('id', $id);
 
         $this->model->update($data);
@@ -53,6 +62,8 @@ abstract class BaseRepository
 
     public function destroy(int|string $id): void
     {
+        Gate::authorize('delete', $this->model);
+
         $this->model = $this->getBy('id', $id);
 
         $this->model->delete();
@@ -60,6 +71,8 @@ abstract class BaseRepository
 
     public function restore(int|string $id)
     {
+        Gate::authorize('restore', $this->model);
+
         $this->model = $this->model
             ->onlyTrashed()
             ->findOrFail('id', $id);

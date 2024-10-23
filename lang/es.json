@@ -1,4 +1,6 @@
 {
+    "Classname not found.": "Nombre de clase no encontrado.",
+    "The user has been logged out.": "El usuario ha sido desconectado.",
     "(and :count more error)": "(y :count error más)",
     "(and :count more errors)": "(y :count error más)|(y :count errores más)|(y :count errores más)",
     "A decryption key is required.": "Se requiere una clave de descifrado.",

@@ -33,14 +33,16 @@
     29 => 'LaravelLang\\Models\\ServiceProvider',
     30 => 'LaravelLang\\Publisher\\ServiceProvider',
     31 => 'LaravelLang\\Routes\\ServiceProvider',
-    32 => 'Laravel\\Pail\\PailServiceProvider',
-    33 => 'Laravel\\Sail\\SailServiceProvider',
-    34 => 'Laravel\\Tinker\\TinkerServiceProvider',
-    35 => 'Carbon\\Laravel\\ServiceProvider',
-    36 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
-    37 => 'Termwind\\Laravel\\TermwindServiceProvider',
-    38 => 'Spatie\\Permission\\PermissionServiceProvider',
-    39 => 'app\\Providers\\AppServiceProvider',
+    32 => 'Laravel\\Breeze\\BreezeServiceProvider',
+    33 => 'Laravel\\Pail\\PailServiceProvider',
+    34 => 'Laravel\\Sail\\SailServiceProvider',
+    35 => 'Laravel\\Sanctum\\SanctumServiceProvider',
+    36 => 'Laravel\\Tinker\\TinkerServiceProvider',
+    37 => 'Carbon\\Laravel\\ServiceProvider',
+    38 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
+    39 => 'Termwind\\Laravel\\TermwindServiceProvider',
+    40 => 'Spatie\\Permission\\PermissionServiceProvider',
+    41 => 'app\\Providers\\AppServiceProvider',
   ),
   'eager' => 
   array (
@@ -64,11 +66,12 @@
     17 => 'LaravelLang\\Publisher\\ServiceProvider',
     18 => 'LaravelLang\\Routes\\ServiceProvider',
     19 => 'Laravel\\Pail\\PailServiceProvider',
-    20 => 'Carbon\\Laravel\\ServiceProvider',
-    21 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
-    22 => 'Termwind\\Laravel\\TermwindServiceProvider',
-    23 => 'Spatie\\Permission\\PermissionServiceProvider',
-    24 => 'app\\Providers\\AppServiceProvider',
+    20 => 'Laravel\\Sanctum\\SanctumServiceProvider',
+    21 => 'Carbon\\Laravel\\ServiceProvider',
+    22 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
+    23 => 'Termwind\\Laravel\\TermwindServiceProvider',
+    24 => 'Spatie\\Permission\\PermissionServiceProvider',
+    25 => 'app\\Providers\\AppServiceProvider',
   ),
   'deferred' => 
   array (
@@ -221,6 +224,7 @@
     'validator' => 'Illuminate\\Validation\\ValidationServiceProvider',
     'validation.presence' => 'Illuminate\\Validation\\ValidationServiceProvider',
     'Illuminate\\Contracts\\Validation\\UncompromisedVerifier' => 'Illuminate\\Validation\\ValidationServiceProvider',
+    'Laravel\\Breeze\\Console\\InstallCommand' => 'Laravel\\Breeze\\BreezeServiceProvider',
     'Laravel\\Sail\\Console\\InstallCommand' => 'Laravel\\Sail\\SailServiceProvider',
     'Laravel\\Sail\\Console\\PublishCommand' => 'Laravel\\Sail\\SailServiceProvider',
     'command.tinker' => 'Laravel\\Tinker\\TinkerServiceProvider',
@@ -264,6 +268,9 @@
     array (
     ),
     'Illuminate\\Validation\\ValidationServiceProvider' => 
+    array (
+    ),
+    'Laravel\\Breeze\\BreezeServiceProvider' => 
     array (
     ),
     'Laravel\\Sail\\SailServiceProvider' => 

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\ActionEnum;
+use App\Enums\ModelEnum;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\UserResource;
@@ -73,6 +75,50 @@ class UserController extends Controller
     public function restore(string $id)
     {
         $record = $this->service->restore($id);
+
+        return new UserResource($record);
+    }
+
+    public function syncRoles(Request $request, string $id)
+    {
+        $request->validate([
+            'roles' => [
+                'nullable',
+                function ($attribute, $value, $fail) {
+                    if (! is_array($value) and ! is_numeric($value) ) {
+                        $fail(__('validation.array',['attribute'=>$attribute]) .'. '. __('validation.numeric',['attribute'=>$attribute]));
+                    }
+                },
+            ],
+        ]);
+
+        $record = $this->service->getById($id);
+
+        $record->syncRoles($request->get('roles'));
+
+        $record->load(['permissions']);
+
+        return new UserResource($record);
+    }
+
+    public function syncPermissions(Request $request, string $id)
+    {
+        $request->validate([
+            'permissions' => [
+                'nullable',
+                function ($attribute, $value, $fail) {
+                    if (! is_array($value) and ! is_numeric($value) ) {
+                        $fail(__('validation.array',['attribute'=>$attribute]) .'. '. __('validation.numeric',['attribute'=>$attribute]));
+                    }
+                },
+            ],
+        ]);
+
+        $record = $this->service->getById($id);
+
+        $record->syncPermissions($request->get('permissions'));
+
+        $record->load(['permissions']);
 
         return new UserResource($record);
     }

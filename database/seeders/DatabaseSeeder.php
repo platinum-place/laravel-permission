@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Enums\ActionEnum;
+use App\Enums\ModelEnum;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -14,16 +16,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call([
+            EnumSeeder::class,
+        ]);
+
         // User::factory(10)->create();
 
-        User::factory()->create([
+        $user = User::factory()->create([
             'name' => 'Warlyn García',
             'email' => 'warlyn@laravel.com',
             'username' => 'warlyn.garcia',
         ]);
 
-        $this->call([
-            EnumSeeder::class,
-        ]);
+        $user->syncPermissionToAction(ActionEnum::view->name, ModelEnum::user->name);
     }
 }
