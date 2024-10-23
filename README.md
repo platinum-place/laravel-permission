@@ -1,10 +1,10 @@
 # Descripción
 
-Este proyecto es un ejemplo diseñado para ilustrar la metodología de trabajo en proyectos desarrollados con Laravel. 
+Este proyecto es un ejemplo diseñado para ilustrar la metodología de trabajo en proyectos desarrollados con Laravel.
 
-En particular, se muestra el uso de autenticación OAuth2, en Laravel Passport, un paquete para dicho sistema de autenticación.
+En este caso, muestra mi interpretacíon del uso del paquete Laravel Permission, hecho por Spatie.
 
-El proyecto muestra como interpreto dicho paquete para la creation de REST API para la communion entre sistemas, sin intervention humana.
+En el proyecto, utilizo tanto los roles como los permisos, pero ambos atados usuario. Esto es asi, porque, en caso de necesitar delimitar por permisos o por roles, el usuario tiene ambas opciones y no son mutuamente excluyentes.
 
 ## Metodologías y patrones utilizados
 
@@ -60,6 +60,6 @@ Dentro del proyecto se encuentra una colección de endpoints (exportada desde Po
 
 ## Paquetes utilizados
 
-- [Passport](https://github.com/laravel/passport) para la autenticación.
+- [Spatie Permissions](https://github.com/spatie/laravel-permission) para la autenticación.
 - [Laravel Lang](https://github.com/Laravel-Lang/common) para las traducciones.
 - [Laravel Sail](https://github.com/laravel/sail) para la gestión del entorno de pruebas.
