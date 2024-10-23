@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Database\Seeders\EnumSeeder\ActionSeeder;
 use Database\Seeders\EnumSeeder\Log\LogLevelSeeder;
+use Database\Seeders\EnumSeeder\PermissionSeeder;
+use Database\Seeders\EnumSeeder\RoleSeeder;
 use Illuminate\Database\Seeder;
 
 class EnumSeeder extends Seeder
@@ -16,6 +18,8 @@ class EnumSeeder extends Seeder
         $this->call([
             LogLevelSeeder::class,
             ActionSeeder::class,
+            RoleSeeder::class,
+            PermissionSeeder::class,
         ]);
     }
 }
